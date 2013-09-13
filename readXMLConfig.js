@@ -149,16 +149,41 @@ var filtersXml = function(xmlObject){
 //add default list into [process filter] configuration.
 /******************************************/
 //read xml
+//process filter
 var procFilterPath = "C:/shared/sample/procfilter.xml";
 var objXML = xmlFileReader( procFilterPath ).load().getXML();
-
-//set filters
 var proclist = new Array ('aaa.exe','bbb.exe','ccc.exe');
 var proc_Filter  = filtersXml(objXML);
 proc_Filter.setChildName( 'Proc_Filter' );
 proc_Filter.setDecendantName( 'log_filter_process' );
 proc_Filter.addFilters( proclist ,procFilterPath);
 
+//path_filter
+var pathFilterPath = "C:/shared/sample/pathfilter.xml";
+objXML = xmlFileReader( pathFilterPath ).load().getXML();
+var pathlist = new Array ('C:\temp','C:\temp1','c:\temp02');
+var path_Filter  = filtersXml(objXML);
+path_Filter.setChildName( 'Path_Filter' );
+path_Filter.setDecendantName( 'log_filter_path' );
+path_Filter.addFilters( pathlist ,pathFilterPath);
+
+//url_filter
+var urlFilterPath = "C:/shared/sample/urlt.xml";
+objXML = xmlFileReader( urlFilterPath ).load().getXML();
+var urllist = new Array ('http://aaa','http://bbb','http://ccc');
+var url_Filter  = filtersXml(objXML);
+url_Filter.setChildName( 'URLT' );
+url_Filter.setDecendantName( 'url_filter' );
+url_Filter.addFilters( urllist ,urlFilterPath);
+
+//frp_filter
+var ftpFilterPath = "C:/shared/sample/ftpfilter.xml";
+objXML = xmlFileReader( ftpFilterPath ).load().getXML();
+var ftplist = new Array ('C:\temp','C:\temp1','c:\temp02');
+var ftp_Filter  = filtersXml(objXML);
+ftp_Filter.setChildName( 'FTPFilter' );
+ftp_Filter.setDecendantName( 'ftpip' );
+ftp_Filter.addFilters( ftplist ,ftpFilterPath);
 
 /******************************************/
 //get users info from rut.xml.
